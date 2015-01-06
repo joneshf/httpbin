@@ -4,9 +4,11 @@
 <polymer-element name="http-bin">
     <template>
         <core-ajax id="ajax" url="http://httpbin.org{{endpoint}}" response="{{payload}}"></core-ajax>
-        <input type="text" placeholder="/get" value="{{endpoint}}">
-        <button on-click="{{send}}">Send</button>
-        <textarea value="{{payload}}"></textarea>
+        <div>
+            <input type="text" placeholder="/get" value="{{endpoint}}">
+            <button on-click="{{send}}">Send</button>
+        </div>
+        <textarea cols="80" rows="24" value="{{payload}}"></textarea>
     </template>
     <script>
         Polymer("http-bin", {
