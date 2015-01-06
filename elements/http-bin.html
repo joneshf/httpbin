@@ -1,0 +1,18 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/core-ajax/core-ajax.html">
+
+<polymer-element name="http-bin">
+    <template>
+        <core-ajax id="ajax" url="http://httpbin.org{{endpoint}}" response="{{payload}}"></core-ajax>
+        <input type="text" placeholder="/get" value="{{endpoint}}">
+        <button on-click="{{send}}">Send</button>
+        <textarea value="{{payload}}"></textarea>
+    </template>
+    <script>
+        Polymer("http-bin", {
+            send: function() {
+                this.$.ajax.go();
+            }
+        });
+    </script>
+</polymer-element>
