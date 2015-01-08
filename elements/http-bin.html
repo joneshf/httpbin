@@ -6,7 +6,7 @@
         <core-ajax id="ajax" url="http://httpbin.org{{endpoint}}" response="{{payload}}"></core-ajax>
         <div>
             <input type="text" placeholder="/get" value="{{endpoint}}">
-            <button on-click="{{send}}">Send</button>
+            <button on-click="{{send}}">Send Request</button>
         </div>
         <textarea cols="80" rows="24" value="{{payload}}"></textarea>
     </template>
