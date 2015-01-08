@@ -1,17 +1,29 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/core-ajax/core-ajax.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
 
 <polymer-element name="http-bin">
     <template>
-        <core-ajax id="ajax" url="http://httpbin.org{{endpoint}}" response="{{payload}}"></core-ajax>
-        <div>
-            <input type="text" placeholder="/get" value="{{endpoint}}">
-            <button on-click="{{send}}">Send Request</button>
+        <style>
+            :host #input {
+                margin: 10px 0;
+            }
+        </style>
+        <core-ajax id="ajax" response="{{payload}}" url="http://httpbin.org{{endpoint}}"></core-ajax>
+        <div id="input">
+            <paper-input label="Endpoint e.g.: /get, /delay/12" on-keyup="{{handleInput}}" value="{{endpoint}}"></paper-input>
+            <paper-button on-click="{{send}}" raised>Send Request</paper-button>
         </div>
         <textarea cols="80" rows="24" value="{{payload}}"></textarea>
     </template>
     <script>
         Polymer("http-bin", {
+            handleInput: function(e) {
+                if (e.which === 13) {
+                    this.send();
+                }
+            },
             send: function() {
                 this.$.ajax.go();
             }
